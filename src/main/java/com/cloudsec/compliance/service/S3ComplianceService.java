@@ -22,9 +22,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- * Service for S3 compliance operations
- */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -41,22 +38,17 @@ public class S3ComplianceService {
         log.info("Listing S3 buckets for region: {}, pageSize: {}", region, pageSize);
         
         try {
-            // Input validation
             String validatedRegion = inputValidator.validateAndSanitizeRegion(region);
             int validatedPageSize = inputValidator.validatePageSize(pageSize, DEFAULT_PAGE_SIZE);
             
-            // Rate limiting
             if (!rateLimitingComponent.checkRateLimit("listBuckets")) {
                 throw new RateLimitExceededException("Rate limit exceeded. Please try again later.");
             }
             
-            // Create S3 client
             S3Client s3Client = createS3Client(validatedRegion);
             
-            // List buckets
             ListBucketsResponse response = s3Client.listBuckets();
             
-            // Convert and sanitize bucket information
             List<S3BucketInfo> allBuckets = response.buckets().stream()
                 .limit(MAX_BUCKETS_RETURNED)
                 .map(bucket -> new S3BucketInfo(
@@ -68,7 +60,6 @@ public class S3ComplianceService {
                 ))
                 .collect(Collectors.toList());
             
-            // Apply pagination
             PaginationResult<S3BucketInfo> paginatedResult = 
                 paginationUtils.paginateResults(allBuckets, validatedPageSize, pageToken);
             

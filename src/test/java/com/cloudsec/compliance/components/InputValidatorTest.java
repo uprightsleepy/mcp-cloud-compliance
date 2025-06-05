@@ -24,31 +24,22 @@ class InputValidatorTest {
 
     @Test
     @DisplayName("Should return default region when input is null")
-    void shouldReturnDefaultRegionWhenNull() {
-        // When
+    void shouldReturnDefaultRegionWhenNull() {   
         String result = inputValidator.validateAndSanitizeRegion(null);
-        
-        // Then
         assertThat(result).isEqualTo("us-east-1");
     }
 
     @Test
     @DisplayName("Should return default region when input is empty")
-    void shouldReturnDefaultRegionWhenEmpty() {
-        // When
+    void shouldReturnDefaultRegionWhenEmpty() {  
         String result = inputValidator.validateAndSanitizeRegion("");
-        
-        // Then
         assertThat(result).isEqualTo("us-east-1");
     }
 
     @Test
     @DisplayName("Should return default region when input is whitespace")
     void shouldReturnDefaultRegionWhenWhitespace() {
-        // When
-        String result = inputValidator.validateAndSanitizeRegion("   ");
-        
-        // Then
+        String result = inputValidator.validateAndSanitizeRegion("   "); 
         assertThat(result).isEqualTo("us-east-1");
     }
 
@@ -57,21 +48,15 @@ class InputValidatorTest {
         "us-east-1", "us-west-2", "eu-west-1", "ap-southeast-1", "ca-central-1"
     })
     @DisplayName("Should accept valid AWS regions")
-    void shouldAcceptValidRegions(String validRegion) {
-        // When
+    void shouldAcceptValidRegions(String validRegion) {     
         String result = inputValidator.validateAndSanitizeRegion(validRegion);
-        
-        // Then
         assertThat(result).isEqualTo(validRegion);
     }
 
     @Test
     @DisplayName("Should sanitize region input by trimming and lowercasing")
-    void shouldSanitizeRegionInput() {
-        // When
+    void shouldSanitizeRegionInput() {   
         String result = inputValidator.validateAndSanitizeRegion("  US-EAST-1  ");
-        
-        // Then
         assertThat(result).isEqualTo("us-east-1");
     }
 
@@ -81,7 +66,6 @@ class InputValidatorTest {
     })
     @DisplayName("Should reject invalid regions")
     void shouldRejectInvalidRegions(String invalidRegion) {
-        // When/Then
         assertThatThrownBy(() -> inputValidator.validateAndSanitizeRegion(invalidRegion))
             .isInstanceOf(InvalidInputException.class)
             .hasMessageContaining("Invalid region specified");
@@ -90,7 +74,6 @@ class InputValidatorTest {
     @Test
     @DisplayName("Should sanitize malicious characters from region input")
     void shouldSanitizeMaliciousCharacters() {
-        // When/Then
         assertThatThrownBy(() -> inputValidator.validateAndSanitizeRegion("us-east-1; rm -rf /"))
             .isInstanceOf(InvalidInputException.class);
     }
@@ -98,50 +81,35 @@ class InputValidatorTest {
     @Test
     @DisplayName("Should return default page size when input is null")
     void shouldReturnDefaultPageSizeWhenNull() {
-        // When
         int result = inputValidator.validatePageSize(null, 20);
-        
-        // Then
         assertThat(result).isEqualTo(20);
     }
 
     @Test
     @DisplayName("Should return minimum page size when input is too small")
-    void shouldReturnMinimumPageSizeWhenTooSmall() {
-        // When
+    void shouldReturnMinimumPageSizeWhenTooSmall() {  
         int result = inputValidator.validatePageSize(-5, 20);
-        
-        // Then
         assertThat(result).isEqualTo(1);
     }
 
     @Test
     @DisplayName("Should return maximum page size when input is too large")
-    void shouldReturnMaximumPageSizeWhenTooLarge() {
-        // When
-        int result = inputValidator.validatePageSize(1000, 20);
-        
-        // Then
+    void shouldReturnMaximumPageSizeWhenTooLarge() {   
+        int result = inputValidator.validatePageSize(1000, 20);  
         assertThat(result).isEqualTo(100);
     }
 
     @Test
     @DisplayName("Should return input when page size is valid")
-    void shouldReturnInputWhenPageSizeValid() {
-        // When
-        int result = inputValidator.validatePageSize(25, 20);
-        
-        // Then
+    void shouldReturnInputWhenPageSizeValid() {       
+        int result = inputValidator.validatePageSize(25, 20);   
         assertThat(result).isEqualTo(25);
     }
 
     @Test
     @DisplayName("Should return bucket name unchanged when not sensitive")
-    void shouldReturnBucketNameUnchangedWhenNotSensitive() {
-        // When
+    void shouldReturnBucketNameUnchangedWhenNotSensitive() {   
         String result = inputValidator.sanitizeBucketName("my-app-bucket");
-        
-        // Then
         assertThat(result).isEqualTo("my-app-bucket");
     }
 
@@ -151,44 +119,31 @@ class InputValidatorTest {
     })
     @DisplayName("Should mask sensitive bucket names")
     void shouldMaskSensitiveBucketNames(String sensitiveName) {
-        // When
-        String result = inputValidator.sanitizeBucketName(sensitiveName);
-        
-        // Then
+        String result = inputValidator.sanitizeBucketName(sensitiveName);      
         assertThat(result).endsWith("***");
-        assertThat(result).hasSizeLessThanOrEqualTo(6); // 3 chars + "***"
+        assertThat(result).hasSizeLessThanOrEqualTo(6);
     }
 
     @Test
     @DisplayName("Should handle null bucket name")
-    void shouldHandleNullBucketName() {
-        // When
+    void shouldHandleNullBucketName() {    
         String result = inputValidator.sanitizeBucketName(null);
-        
-        // Then
         assertThat(result).isEqualTo("unknown");
     }
 
     @Test
     @DisplayName("Should handle very short sensitive bucket names")
     void shouldHandleShortSensitiveBucketNames() {
-        // When
         String result = inputValidator.sanitizeBucketName("se");
-        
-        // Then - "se" doesn't contain sensitive patterns, so it shouldn't be masked
         assertThat(result).isEqualTo("se");
     }
     
     @Test
     @DisplayName("Should handle short bucket name containing sensitive pattern")
     void shouldHandleShortBucketNameWithSensitivePattern() {
-        // When
         String result = inputValidator.sanitizeBucketName("sec");
-        
-        // Then - "sec" doesn't fully contain "secret", so shouldn't be masked
         assertThat(result).isEqualTo("sec");
         
-        // But if it contains the full pattern:
         String secretResult = inputValidator.sanitizeBucketName("secret");
         assertThat(secretResult).isEqualTo("sec***");
     }

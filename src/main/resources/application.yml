@@ -1,58 +1,48 @@
-# Application Configuration
 spring:
   application:
     name: cloud-compliance-mcp
   
-  # Web Configuration (disabled for console app)
   main:
     web-application-type: none
     banner-mode: off
     log-startup-info: false
   
-  # Jackson Configuration
   jackson:
     default-property-inclusion: non_null
     time-zone: UTC
     serialization:
       write-dates-as-timestamps: false
 
-# Logging Configuration - Redirect ALL logs to file only
 logging:
   level:
-    root: OFF  # Turn off all console logging
+    root: OFF
   file:
     name: logs/cloud-compliance-mcp.log
   pattern:
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
-# Application Specific Configuration
 compliance:
   version: "0.2.0"
   
-  # Rate Limiting Configuration
   rate-limiting:
     enabled: true
     max-requests-per-minute: 10
     window-size-ms: 60000
   
-  # Pagination Configuration  
   pagination:
     default-page-size: 20
     max-page-size: 100
     max-total-results: 1000
   
-  # Security Configuration
   security:
     input-validation:
       enabled: true
       sanitize-bucket-names: true
     
-    # AWS Configuration
     aws:
       default-region: us-east-1
       max-retries: 2
       
-  # Supported AWS Regions
   supported-regions:
     - us-east-1
     - us-east-2  
@@ -72,7 +62,6 @@ compliance:
     - sa-east-1
 
 ---
-# Development Profile
 spring:
   config:
     activate:
@@ -85,12 +74,11 @@ logging:
 
 compliance:
   rate-limiting:
-    max-requests-per-minute: 100  # Higher limits for development
+    max-requests-per-minute: 100
   pagination:
-    max-total-results: 10000      # Higher limits for development
+    max-total-results: 10000
 
 ---
-# Production Profile  
 spring:
   config:
     activate:
@@ -105,7 +93,7 @@ logging:
 
 compliance:
   rate-limiting:
-    max-requests-per-minute: 5    # Stricter limits for production
+    max-requests-per-minute: 5
   security:
     input-validation:
       strict-mode: true
