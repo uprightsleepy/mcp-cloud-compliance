@@ -123,4 +123,16 @@ class RateLimitingComponentTest {
             .as("Not all requests should be allowed if rate limit works")
             .isLessThanOrEqualTo(10);
     }
+
+    @Test
+    @DisplayName("Should clean up old entries when window advances")
+    void shouldCleanupOldEntries() throws InterruptedException {
+        for (int i = 0; i < 3; i++) {
+            rateLimitingComponent.checkRateLimit("cleanupTest");
+        }
+
+        Thread.sleep(61_000);
+        boolean allowed = rateLimitingComponent.checkRateLimit("cleanupTest");
+        assertThat(allowed).isTrue();
+    }
 }
