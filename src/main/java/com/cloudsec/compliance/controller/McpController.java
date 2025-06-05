@@ -24,22 +24,21 @@ public class McpController implements CommandLineRunner {
     @Override
     public void run(String... args) {
         log.info("Starting MCP Cloud Compliance Server...");
-        
-        Scanner scanner = new Scanner(System.in);
-        
-        while (scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            if (line.trim().isEmpty()) continue;
-            
-            try {
-                handleRequest(line);
-            } catch (Exception e) {
-                log.error("Error handling MCP request", e);
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                if (line.trim().isEmpty()) continue;
+                
+                try {
+                    handleRequest(line);
+                } catch (Exception e) {
+                    log.error("Error handling MCP request", e);
+                }
             }
         }
     }
     
-    private void handleRequest(String jsonRequest) throws Exception {
+    void handleRequest(String jsonRequest) throws Exception {
         @SuppressWarnings("unchecked")
         Map<String, Object> request = objectMapper.readValue(jsonRequest, Map.class);
         
