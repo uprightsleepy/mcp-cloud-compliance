@@ -1,5 +1,4 @@
 # MCP Cloud Compliance
-
 [![Build Status](https://github.com/uprightsleepy/mcp-cloud-compliance/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR-GITHUB-USERNAME/mcp-cloud-compliance/actions)
 [![codecov](https://codecov.io/gh/uprightsleepy/mcp-cloud-compliance/branch/main/graph/badge.svg)](https://codecov.io/gh/YOUR-GITHUB-USERNAME/mcp-cloud-compliance)
 [![Java](https://img.shields.io/badge/Java-21-orange)](https://openjdk.org/projects/jdk/21/)
@@ -23,7 +22,6 @@ The vision is to transform compliance auditing from a manual, time-consuming pro
 Currently, the project supports basic S3 bucket compliance checks, with plans to expand to full AWS service coverage and automated report generation.
 
 ## Prerequisites
-
 - Java 21 or higher
 - Maven 3.6+
 - AWS credentials configured
