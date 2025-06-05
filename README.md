@@ -5,7 +5,10 @@
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.5-green)](https://spring.io/projects/spring-boot)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
+# MCP Cloud Compliance
+
 A Model Context Protocol (MCP) server for AWS cloud compliance auditing.
+
 ## Project Goal
 
 This MCP server aims to automate cloud compliance reporting for major security frameworks including SOC2, NIST, and PCI-DSS. Instead of manually gathering evidence and checking hundreds of controls across your AWS infrastructure, you'll be able to have a conversation with Claude to generate comprehensive compliance reports. 
@@ -19,7 +22,6 @@ The vision is to transform compliance auditing from a manual, time-consuming pro
 Currently, the project supports basic S3 bucket compliance checks, with plans to expand to full AWS service coverage and automated report generation.
 
 ## Prerequisites
-
 - Java 21 or higher
 - Maven 3.6+
 - AWS credentials configured
@@ -85,17 +87,17 @@ open target/site/jacoco/index.html
 - `health_check` - Verify server is running
 - `list_s3_buckets` - List S3 buckets with compliance info
 
-## License
-
-MIT
-
 ## Contributing
 
 Contributions are welcome! Whether you're adding new compliance checks, improving documentation, or fixing bugs, we appreciate your help. Please feel free to:
 
-- Open issues for bugs or feature requests
-- Submit pull requests with improvements
-- Add support for new AWS services or compliance frameworks
-- Improve test coverage
+Open issues for bugs or feature requests
+Submit pull requests with improvements
+Add support for new AWS services or compliance frameworks
+Improve test coverage
 
 For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+MIT
