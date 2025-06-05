@@ -41,6 +41,8 @@ jobs:
         file: ./target/site/jacoco/jacoco.xml
         flags: unittests
         name: codecov-umbrella
+        token: ${{ secrets.CODECOV_TOKEN }}
+        fail_ci_if_error: false
 
     - name: Upload test results
       uses: actions/upload-artifact@v3
