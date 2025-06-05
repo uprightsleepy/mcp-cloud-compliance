@@ -1,4 +1,4 @@
-package com.cloudsec.compliance.component;
+package com.cloudsec.compliance.components;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

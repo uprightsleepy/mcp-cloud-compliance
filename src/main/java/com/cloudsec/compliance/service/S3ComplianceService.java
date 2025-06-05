@@ -1,11 +1,11 @@
 package com.cloudsec.compliance.service;
 
-import com.cloudsec.compliance.component.InputValidator;
-import com.cloudsec.compliance.component.RateLimitingComponent;
 import com.cloudsec.compliance.dto.response.S3BucketListResponse;
+import com.cloudsec.compliance.errors.InvalidInputException;
+import com.cloudsec.compliance.errors.RateLimitExceededException;
+import com.cloudsec.compliance.components.InputValidator;
+import com.cloudsec.compliance.components.RateLimitingComponent;
 import com.cloudsec.compliance.dto.response.S3BucketInfo;
-import com.cloudsec.compliance.exception.RateLimitExceededException;
-import com.cloudsec.compliance.exception.InvalidInputException;
 import com.cloudsec.compliance.util.PaginationUtils;
 import com.cloudsec.compliance.model.PaginationResult;
 import lombok.RequiredArgsConstructor;

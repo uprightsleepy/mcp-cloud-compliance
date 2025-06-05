@@ -1,4 +1,4 @@
-package com.cloudsec.compliance.exception;
+package com.cloudsec.compliance.errors;
 
 public class RateLimitExceededException extends ComplianceException {
     

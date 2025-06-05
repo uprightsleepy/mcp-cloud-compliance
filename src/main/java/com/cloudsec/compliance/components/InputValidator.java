@@ -1,8 +1,9 @@
-package com.cloudsec.compliance.component;
+package com.cloudsec.compliance.components;
 
-import com.cloudsec.compliance.exception.InvalidInputException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
+import com.cloudsec.compliance.errors.InvalidInputException;
 
 import java.util.HashSet;
 import java.util.Set;
