@@ -1,0 +1,111 @@
+# Application Configuration
+spring:
+  application:
+    name: cloud-compliance-mcp
+  
+  # Web Configuration (disabled for console app)
+  main:
+    web-application-type: none
+    banner-mode: off
+    log-startup-info: false
+  
+  # Jackson Configuration
+  jackson:
+    default-property-inclusion: non_null
+    time-zone: UTC
+    serialization:
+      write-dates-as-timestamps: false
+
+# Logging Configuration - Redirect ALL logs to file only
+logging:
+  level:
+    root: OFF  # Turn off all console logging
+  file:
+    name: logs/cloud-compliance-mcp.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# Application Specific Configuration
+compliance:
+  version: "0.2.0"
+  
+  # Rate Limiting Configuration
+  rate-limiting:
+    enabled: true
+    max-requests-per-minute: 10
+    window-size-ms: 60000
+  
+  # Pagination Configuration  
+  pagination:
+    default-page-size: 20
+    max-page-size: 100
+    max-total-results: 1000
+  
+  # Security Configuration
+  security:
+    input-validation:
+      enabled: true
+      sanitize-bucket-names: true
+    
+    # AWS Configuration
+    aws:
+      default-region: us-east-1
+      max-retries: 2
+      
+  # Supported AWS Regions
+  supported-regions:
+    - us-east-1
+    - us-east-2  
+    - us-west-1
+    - us-west-2
+    - eu-west-1
+    - eu-west-2
+    - eu-west-3
+    - eu-central-1
+    - eu-north-1
+    - ap-southeast-1
+    - ap-southeast-2
+    - ap-northeast-1
+    - ap-northeast-2
+    - ap-south-1
+    - ca-central-1
+    - sa-east-1
+
+---
+# Development Profile
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+logging:
+  level:
+    com.cloudsec.compliance: DEBUG
+    org.springframework: INFO
+
+compliance:
+  rate-limiting:
+    max-requests-per-minute: 100  # Higher limits for development
+  pagination:
+    max-total-results: 10000      # Higher limits for development
+
+---
+# Production Profile  
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+logging:
+  level:
+    com.cloudsec.compliance: WARN
+    org.springframework: ERROR
+  file:
+    name: /var/log/cloud-compliance-mcp/application.log
+
+compliance:
+  rate-limiting:
+    max-requests-per-minute: 5    # Stricter limits for production
+  security:
+    input-validation:
+      strict-mode: true
