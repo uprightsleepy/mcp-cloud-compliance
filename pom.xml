@@ -145,6 +145,15 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <excludes>
+                        <exclude>**/model/**</exclude>
+                        <exclude>**/dto/**</exclude>
+                        <exclude>**/errors/**</exclude>
+                        <exclude>**/CloudComplianceApplication.class</exclude>
+                        <exclude>**/config/**</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
