@@ -134,12 +134,12 @@ mvn clean test jacoco:report
 open target/site/jacoco/index.html
 ```
 
-## Demo
+## Example Queries
 
 The easiest way to see the tool in action is through the conversational interface:
 
 ### 1. Compliance Check
-![alt text](assets/compliance_check.png.png)
+![alt text](assets/compliance_check.png)
 
 *The assistant confirms storage resources are fully compliant with SOC 2 standards, showing no compliance issues or findings.*
 
