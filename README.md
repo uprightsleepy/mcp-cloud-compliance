@@ -134,17 +134,24 @@ mvn clean test jacoco:report
 open target/site/jacoco/index.html
 ```
 
-## Example Requests
+## Demo
 
-The easiest way to see the tool in action is through screenshots showing the conversational interface:
+The easiest way to see the tool in action is through the conversational interface:
 
-1. **Compliance Check**: ![Screenshot where the assistant confirms that the only supported resource type for compliance checking is “Storage,” which includes AWS S3, Azure Blob Storage, and Google Cloud Storage (GCS). The assistant asks whether the user wants to run compliance checks or view supported standards.](img\resource_types.png)
+### 1. Compliance Check
+![alt text](assets/compliance_check.png.png)
 
-2. **Resource Listing**: ![Screenshot of a chat interface where the assistant lists 12 S3 buckets in the us-east-1 AWS region. Buckets are categorized into Application Buckets, System/Utility Buckets, and Test Buckets. Application Buckets include names like shareframe-branding, shareframe-processed-videos, and user-management-service-lambda. One utility bucket is named do-not-delete-ssm-diagnosis-..., and three test buckets are noted as created on June 4, 2025. The assistant offers to run compliance checks on these storage resources.](img\list_buckets.png)
+*The assistant confirms storage resources are fully compliant with SOC 2 standards, showing no compliance issues or findings.*
 
-3. **Standards Overview**: ![Screenshot showing the assistant listing three supported compliance frameworks for cloud resource checks: SOC 2 (focused on security, availability, integrity, confidentiality, and privacy), CIS Benchmarks (focused on security configuration best practices), and NIST Cybersecurity Framework (focused on risk management). The assistant asks if the user wants to check their storage resources against one of these standards.](img\frameworks.png)
+### 2. Resource Listing  
+![S3 bucket listing showing 12 buckets in us-west-2](assets/list_buckets.png)
 
-For a live demo, simply connect the MCP server to Claude Desktop and start asking compliance questions!
+*Lists S3 buckets organized by category: Production/Application buckets (Shareframe services), System/Diagnostic buckets, and Test buckets with creation dates.*
+
+### 3. Standards Overview
+![Supported compliance frameworks: SOC2, CIS, NIST](assets/frameworks.png)
+
+*Shows the three supported compliance standards with descriptions of their focus areas: security controls, configuration benchmarks, and risk management.*
 
 ## Contributing
 Contributions are welcome! Whether you're adding new compliance checks, improving documentation, or fixing bugs, we appreciate your help. Please feel free to:
