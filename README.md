@@ -3,8 +3,8 @@
   <h1>MCP Cloud Compliance</h1>
 </div>
 
-[![Build Status](https://github.com/uprightsleepy/mcp-cloud-compliance/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR-GITHUB-USERNAME/mcp-cloud-compliance/actions)
-[![codecov](https://codecov.io/gh/uprightsleepy/mcp-cloud-compliance/branch/main/graph/badge.svg)](https://codecov.io/gh/YOUR-GITHUB-USERNAME/mcp-cloud-compliance)
+[![Build Status](https://github.com/uprightsleepy/mcp-cloud-compliance/actions/workflows/ci.yml/badge.svg)](https://github.com/uprightsleepy/mcp-cloud-compliance/actions)
+[![codecov](https://codecov.io/gh/uprightsleepy/mcp-cloud-compliance/branch/main/graph/badge.svg)](https://codecov.io/gh/uprightsleepy/mcp-cloud-compliance)
 [![Java](https://img.shields.io/badge/Java-21-orange)](https://openjdk.org/projects/jdk/21/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.5-green)](https://spring.io/projects/spring-boot)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
