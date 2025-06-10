@@ -1,4 +1,8 @@
-# MCP Cloud Compliance
+<div align="center">
+  <img src="img\logo.png" alt="MCP Cloud Compliance Logo" width="500"/>
+  <h1>MCP Cloud Compliance</h1>
+</div>
+
 [![Build Status](https://github.com/uprightsleepy/mcp-cloud-compliance/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR-GITHUB-USERNAME/mcp-cloud-compliance/actions)
 [![codecov](https://codecov.io/gh/uprightsleepy/mcp-cloud-compliance/branch/main/graph/badge.svg)](https://codecov.io/gh/YOUR-GITHUB-USERNAME/mcp-cloud-compliance)
 [![Java](https://img.shields.io/badge/Java-21-orange)](https://openjdk.org/projects/jdk/21/)
