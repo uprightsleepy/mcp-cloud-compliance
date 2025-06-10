@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="img\logo.png" alt="MCP Cloud Compliance Logo" width="500"/>
+  <img src="assets/logo.png" alt="MCP Cloud Compliance Logo" width="500"/>
   <h1>MCP Cloud Compliance</h1>
 </div>
 
